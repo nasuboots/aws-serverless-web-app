@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "tsx --tsconfig tsconfig.app.json src/index.ts",
+    "start": "tsx --tsconfig tsconfig.app.json src/main.ts",
+    "dev": "tsx watch --tsconfig tsconfig.app.json src/main.ts",
     "build": "tsx --tsconfig tsconfig.node.json scripts/build.ts",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --verbose",
     "typecheck": "tsc -b",
@@ -14,5 +15,10 @@
   "devDependencies": {
     "@my-app/eslint-config": "*",
     "@my-app/tsconfig": "*"
+  },
+  "dependencies": {
+    "@fastify/type-provider-typebox": "^3.2.0",
+    "@sinclair/typebox": "^0.28.9",
+    "fastify": "^4.17.0"
   }
 }
