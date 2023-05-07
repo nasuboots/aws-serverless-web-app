@@ -5,10 +5,10 @@ import fastifySwaggerUi from '@fastify/swagger-ui'
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
 import fastify from 'fastify'
 
-import { buildApp } from './app'
+import { buildApp, defaultFastifyOptions } from './app'
 
 export const buildAppWithApiSpec = async (
-  app = fastify({ logger: true }).withTypeProvider<TypeBoxTypeProvider>()
+  app = fastify(defaultFastifyOptions()).withTypeProvider<TypeBoxTypeProvider>()
 ) => {
   await app.register(fastifySwagger, {
     openapi: {
