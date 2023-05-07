@@ -18,9 +18,11 @@
     "@fastify/swagger-ui": "^1.8.1",
     "@my-app/eslint-config": "*",
     "@my-app/tsconfig": "*",
-    "@redocly/cli": "^1.0.0-beta.125"
+    "@redocly/cli": "^1.0.0-beta.125",
+    "@types/aws-lambda": "^8.10.115"
   },
   "dependencies": {
+    "@fastify/aws-lambda": "^3.2.0",
     "@fastify/type-provider-typebox": "^3.2.0",
     "@sinclair/typebox": "^0.28.9",
     "fastify": "^4.17.0"
