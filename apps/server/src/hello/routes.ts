@@ -6,6 +6,8 @@ export const getHelloRoute = {
   method: 'GET',
   url: '/',
   schema: {
+    summary: '挨拶を取得する',
+    description: '指定された形式 (JSON | text) で挨拶のメッセージ受け取る。',
     querystring: t.Object({
       name: t.String({ description: '名前' }),
       type: t.Union([t.Literal('json'), t.Literal('text')], {
@@ -18,11 +20,17 @@ export const getHelloRoute = {
         content: {
           'application/json': {
             schema: t.Object({
-              message: t.String({ description: 'メッセージ' }),
+              message: t.String({
+                description: 'メッセージ',
+                examples: ['hello ${name}'],
+              }),
             }),
           },
           'text/plain': {
-            schema: t.String({ description: 'メッセージ' }),
+            schema: t.String({
+              description: 'メッセージ',
+              examples: ['hello ${name}'],
+            }),
           },
         },
       },

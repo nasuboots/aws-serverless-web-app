@@ -26,7 +26,7 @@ const app = await buildAppWithApiSpec()
 
 const json = app.swagger()
 
-// @fastify/swagger でバージョンが固定されてしまうためここで上書き
+// @fastify/swagger-ui が 3.1 に未対応のためここで上書き
 Object.assign(json, { openapi: '3.1.0' })
 
 await fs.mkdir(OUT_DIR, { recursive: true })
