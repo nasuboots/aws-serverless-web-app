@@ -7,6 +7,7 @@
     "start": "tsx --tsconfig tsconfig.app.json src/main.ts",
     "dev": "tsx watch --tsconfig tsconfig.app.json src/main.ts",
     "build": "tsx --tsconfig tsconfig.node.json scripts/build.ts",
+    "build:spec": "tsx --tsconfig tsconfig.node.json scripts/build-spec.ts",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage --verbose",
     "typecheck": "tsc -b",
     "lint": "eslint .",
@@ -16,7 +17,8 @@
     "@fastify/swagger": "^8.3.1",
     "@fastify/swagger-ui": "^1.8.1",
     "@my-app/eslint-config": "*",
-    "@my-app/tsconfig": "*"
+    "@my-app/tsconfig": "*",
+    "@redocly/cli": "^1.0.0-beta.125"
   },
   "dependencies": {
     "@fastify/type-provider-typebox": "^3.2.0",
