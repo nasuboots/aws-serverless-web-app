@@ -16,4 +16,4 @@ export type FastifyTypebox = FastifyInstance<
   TypeBoxTypeProvider
 >
 
-export type AppRoute = Required<Pick<RouteOptions, 'method' | 'url' | 'schema'>>
+export type AppRoute = Omit<RouteOptions, 'handler'>
