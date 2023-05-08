@@ -1,6 +1,14 @@
-import { buildAppWithApiSpec } from './app-with-api-spec'
+import fastify from 'fastify'
 
-const app = await buildAppWithApiSpec()
+import { corePlugin } from './core-plugin'
+import { openApiPlugin } from './open-api-plugin'
+
+const app = fastify({ logger: true, ignoreTrailingSlash: true })
+
+await app.register(openApiPlugin)
+await app.register(corePlugin)
+
+await app.ready()
 
 try {
   await app.listen({ port: 3000 })

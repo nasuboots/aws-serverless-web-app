@@ -9,8 +9,10 @@ import { promisify } from 'util'
 // app.swagger の型情報を読み込むのに必要
 // eslint-disable-next-line node/no-unpublished-import
 import type {} from '@fastify/swagger'
+import fastify from 'fastify'
 
-import { buildAppWithApiSpec } from '../src/app-with-api-spec'
+import { corePlugin } from '../src/core-plugin'
+import { openApiPlugin } from '../src/open-api-plugin'
 
 const execFile = promisify(childProcess.execFile)
 
@@ -22,7 +24,12 @@ const OUT_DIR = path.resolve(__dirname, '../dist/spec')
 const JSON_PATH = path.resolve(OUT_DIR, 'api.json')
 const HTML_PATH = path.resolve(OUT_DIR, 'api.html')
 
-const app = await buildAppWithApiSpec()
+const app = fastify({ ignoreTrailingSlash: true })
+
+await app.register(openApiPlugin)
+await app.register(corePlugin)
+
+await app.ready()
 
 const json = app.swagger()
 

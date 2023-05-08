@@ -1,10 +1,10 @@
 import fastify from 'fastify'
 
-import { buildApp, defaultFastifyOptions } from './app'
+import { corePlugin } from './core-plugin'
 
-const app = await buildApp(
-  fastify({ ...defaultFastifyOptions(), logger: false })
-)
+const app = fastify({ ignoreTrailingSlash: true })
+
+await app.register(corePlugin)
 
 test('ルートが登録されていること', () => {
   // prettier-ignore

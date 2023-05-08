@@ -1,14 +1,9 @@
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
 import fastify from 'fastify'
 
-import { defaultFastifyOptions } from '../app'
-
 import { registerGetHelloHandler } from './get-hello-handler'
 
-const app = fastify({
-  ...defaultFastifyOptions(),
-  logger: false,
-}).withTypeProvider<TypeBoxTypeProvider>()
+const app = fastify().withTypeProvider<TypeBoxTypeProvider>()
 registerGetHelloHandler(app)
 
 test('種類が未指定の時は JSON でメッセージを返すこと', async () => {

@@ -2,14 +2,10 @@
 import fastifySwagger from '@fastify/swagger'
 // eslint-disable-next-line node/no-unpublished-import
 import fastifySwaggerUi from '@fastify/swagger-ui'
-import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
-import fastify from 'fastify'
+import { FastifyPluginAsync } from 'fastify'
+import fastifyPlugin from 'fastify-plugin'
 
-import { buildApp, defaultFastifyOptions } from './app'
-
-export const buildAppWithApiSpec = async (
-  app = fastify(defaultFastifyOptions()).withTypeProvider<TypeBoxTypeProvider>()
-) => {
+export const openApiPlugin: FastifyPluginAsync = fastifyPlugin(async (app) => {
   await app.register(fastifySwagger, {
     openapi: {
       info: {
@@ -21,10 +17,4 @@ export const buildAppWithApiSpec = async (
   await app.register(fastifySwaggerUi, {
     routePrefix: '/spec',
   })
-
-  await buildApp(app)
-
-  await app.ready()
-
-  return app
-}
+})
