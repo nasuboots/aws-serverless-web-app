@@ -3,3 +3,6 @@ dist
 tsc-out
 coverage
 .turbo
+
+.env*
+!.env*.example
