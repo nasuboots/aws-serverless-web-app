@@ -8,6 +8,7 @@ const app = fastify({ logger: true, ignoreTrailingSlash: true })
 
 await app.register(corePlugin)
 
-await app.ready()
-
 export const handler: APIGatewayProxyHandlerV2 = awsLambdaFastify(app)
+
+// awsLambdaFastify(app) のデコレーション後に実施しないとダメ
+await app.ready()
